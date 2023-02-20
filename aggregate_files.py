@@ -13,7 +13,3 @@ def aggregate_files(base_path: str):
             output_path = f"{base_path}/aggregated_outputs/{column}.csv"
 
             temp.to_csv(output_path, mode="a", header=not os.path.exists(output_path))
-
-
-if __name__ == '__main__':
-    aggregate_files(r"/Users/jlee/PycharmProjects/ec/")
