@@ -11,7 +11,7 @@ base_path = "/"
 if __name__ == '__main__':
     pull_or_clone_ce(base_path)
     create_other_paths(base_path)
-    for url in tqdm(toml_field_generator(r"/Users/jlee/PycharmProjects/ec/crypto-ecosystems/data/ecosystems")):
+    for url in tqdm(toml_field_generator(fr"{base_path}/crypto-ecosystems/data/ecosystems")):
         eco_file = download_eco_def(url)
         print(eco_file)
         generate_data(eco_file, limit=None)
@@ -19,5 +19,5 @@ if __name__ == '__main__':
         combine_data(eco_file, 'authors')
         post_process(eco_file)
 
-    aggregate_files(r"/Users/jlee/PycharmProjects/ec/")
+    aggregate_files(base_path)
     upload_data(base_path)
