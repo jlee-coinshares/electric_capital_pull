@@ -13,6 +13,7 @@ if __name__ == '__main__':
     create_other_paths(base_path)
     for url in tqdm(toml_field_generator(r"/Users/jlee/PycharmProjects/ec/crypto-ecosystems/data/ecosystems")):
         eco_file = download_eco_def(url)
+        print(eco_file)
         generate_data(eco_file, limit=None)
         combine_data(eco_file, 'commits')
         combine_data(eco_file, 'authors')
