@@ -1,9 +1,7 @@
 import os
 
-base_path = r"/Users/jlee/PycharmProjects/ec"
 
-
-def pull_or_clone_ce():
+def pull_or_clone_ce(base_path: str):
     if os.path.exists(f"{base_path}/crypto-ecosystems/"):
         cmd = f"cd {base_path}/crypto-ecosystems/ && git pull"
         os.system(cmd)
@@ -13,7 +11,7 @@ def pull_or_clone_ce():
         os.system(cmd)
 
 
-def create_other_paths():
+def create_other_paths(base_path: str):
     if not os.path.exists(f"{base_path}/eco"):
         os.mkdir(f"{base_path}/eco")
 
