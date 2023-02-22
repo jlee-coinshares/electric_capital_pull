@@ -12,25 +12,25 @@ sep = ';'
 
 
 def fetch_repo(repo_addr):
-    repo_item = repository_item(repo_addr)
-    org_name = repo_item.get_org_name
-    repo_name = repo_item.get_repo_name
-    clone_addr = repo_item.address_to_clone
-    # Configure
-    start_date = '2017-01-01'
-
-    # Clone repo
-    repo_org = os.path.join('repos', org_name)
-    repo_path = os.path.join(repo_org, f'{repo_name}.git')
-    clone_repo(repo_path, repo_org, clone_addr)
-
-    # Extract commit info
-    cmd = f'cd {repo_path} && git log --since "{start_date}" --pretty=format:"%cs{sep}%an%ae" > commit.csv'
-    os.system(cmd)
-
-    # Format result
-    csv_path = os.path.join(repo_path, 'commit.csv')
     try:
+        repo_item = repository_item(repo_addr)
+        org_name = repo_item.get_org_name
+        repo_name = repo_item.get_repo_name
+        clone_addr = repo_item.address_to_clone
+        # Configure
+        start_date = '2017-01-01'
+
+        # Clone repo
+        repo_org = os.path.join('repos', org_name)
+        repo_path = os.path.join(repo_org, f'{repo_name}.git')
+        clone_repo(repo_path, repo_org, clone_addr)
+
+        # Extract commit info
+        cmd = f'cd {repo_path} && git log --since "{start_date}" --pretty=format:"%cs{sep}%an%ae" > commit.csv'
+        os.system(cmd)
+
+        # Format result
+        csv_path = os.path.join(repo_path, 'commit.csv')
         df = pd.read_csv(csv_path, header=None, sep=sep)
     except:
         return pd.DataFrame([])
