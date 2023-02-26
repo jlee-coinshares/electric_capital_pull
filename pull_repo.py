@@ -11,7 +11,7 @@ class repository_item:
 
     @property
     def address_to_clone(self):
-        return f"git@github.com:{self.repository_address.replace('https://github.com/', '')}.git"
+        return self.repository_address
 
     @property
     def get_org_name(self):

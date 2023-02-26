@@ -5,15 +5,15 @@ from aggregate_files import aggregate_files
 from upload_to_s3 import upload_data
 from tqdm import tqdm
 
-base_path = "/"
+base_path = "/Users/jlee/PycharmProjects/ec"
 
 
 if __name__ == '__main__':
     pull_or_clone_ce(base_path)
     create_other_paths(base_path)
+
     for url in tqdm(toml_field_generator(fr"{base_path}/crypto-ecosystems/data/ecosystems")):
         eco_file = download_eco_def(url)
-        print(eco_file)
         generate_data(eco_file, limit=None)
         combine_data(eco_file, 'commits')
         combine_data(eco_file, 'authors')
