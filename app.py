@@ -3,6 +3,7 @@ from initialise_ec_repo import pull_or_clone_ce, create_other_paths
 from toml_file_generator import toml_field_generator
 from aggregate_files import aggregate_files
 from upload_to_s3 import upload_data
+from pivot_tables import pivot_main
 from tqdm import tqdm
 
 base_path = "/Users/jlee/PycharmProjects/ec"
@@ -20,4 +21,5 @@ if __name__ == '__main__':
         post_process(eco_file)
 
     aggregate_files(base_path)
+    pivot_main()
     upload_data(base_path)

@@ -21,6 +21,7 @@ def upload_file(dir_name, object_name):
 
 
 def upload_data(base_path):
-    for csv_files in os.listdir(f"{base_path}/aggregated_outputs"):
 
-        upload_file(f"{base_path}/aggregated_outputs/{csv_files}", csv_files)
+    upload_file(f"{base_path}/aggregated_outputs/authors_pivot.csv", "authors_pivot.csv")
+    upload_file(f"{base_path}/aggregated_outputs/authors_roll30_pivot.csv", "authors_roll30_pivot.csv")
+    upload_file(f"{base_path}/aggregated_outputs/commits_pivot.csv", "commits_pivot.csv")
