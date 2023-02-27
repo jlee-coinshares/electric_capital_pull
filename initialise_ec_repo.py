@@ -17,3 +17,8 @@ def create_other_paths(base_path: str):
 
     if not os.path.exists(f"{base_path}/aggregated_outputs"):
         os.mkdir(f"{base_path}/aggregated_outputs")
+
+    """if os.path.exists(f"{base_path}/repos"):
+        cmd = f"rm -rf {base_path}/repos && mkdir {base_path}/repos"
+        os.system(cmd)"""
+

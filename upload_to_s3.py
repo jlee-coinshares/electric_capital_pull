@@ -16,7 +16,7 @@ def upload_file(dir_name, object_name):
     )
     # Upload the file
     s3_client = session.client('s3')
-    name = f"research/{object_name}.csv"
+    name = f"research/{object_name}"
     s3_client.upload_file(dir_name, "coinsharesresearchbucket", name)
 
 
