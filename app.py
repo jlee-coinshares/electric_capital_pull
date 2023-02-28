@@ -6,7 +6,7 @@ from upload_to_s3 import upload_data
 from pivot_tables import pivot_main
 from tqdm import tqdm
 
-base_path = "/Users/jlee/PycharmProjects/ec"
+base_path = "/home/ubuntu/repos/electric_capital_pull"
 
 
 if __name__ == '__main__':
