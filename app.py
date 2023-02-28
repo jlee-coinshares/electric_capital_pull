@@ -17,11 +17,11 @@ if __name__ == '__main__':
         eco_file = download_eco_def(url)
         try:
             generate_data(eco_file, limit=None)
-            combine_data(eco_file, 'commits')
-            combine_data(eco_file, 'authors')
-            post_process(eco_file)
         except KeyError:
             continue
+        combine_data(eco_file, 'commits')
+        combine_data(eco_file, 'authors')
+        post_process(eco_file)
 
     aggregate_files(base_path)
     pivot_main()
