@@ -19,9 +19,12 @@ if __name__ == '__main__':
             generate_data(eco_file, limit=None)
         except KeyError:
             continue
-        combine_data(eco_file, 'commits')
-        combine_data(eco_file, 'authors')
-        post_process(eco_file)
+        try:
+            combine_data(eco_file, 'commits')
+            combine_data(eco_file, 'authors')
+            post_process(eco_file)
+        except FileNotFoundError:
+            continue
 
     aggregate_files(base_path)
     pivot_main()
