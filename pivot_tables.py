@@ -5,9 +5,8 @@ base_path = "/home/ubuntu/repos/electric_capital_pull/aggregated_outputs"
 
 def read_file_and_pivot_table(filename: str):
     column_headers = ['second_index', 'Date', 'Value', 'Ecosystem']
-    #df = pd.read_csv(rf"{base_path}/{filename}")
+    df = pd.read_csv(rf"{base_path}/{filename}")
 
-    df = pd.read_csv(rf"{filename}")
     df.columns = column_headers
     df = pd.pivot_table(df, index='Date', columns=['Ecosystem'], values='Value', aggfunc=sum)
     sorted_columns = sorted(df.columns)
