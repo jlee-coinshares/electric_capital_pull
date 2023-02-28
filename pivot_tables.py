@@ -5,10 +5,11 @@ base_path = "/home/ubuntu/repos/electric_capital_pull/aggregated_outputs"
 
 def read_file_and_pivot_table(filename: str):
     column_headers = ['second_index', 'Date', 'Value', 'Ecosystem']
-    df = pd.read_csv(rf"{base_path}/{filename}")
+    #df = pd.read_csv(rf"{base_path}/{filename}")
 
+    df = pd.read_csv(rf"{filename}")
     df.columns = column_headers
-    df = pd.pivot_table(df, index='Date', columns=['Ecosystem'], values='Value')
+    df = pd.pivot_table(df, index='Date', columns=['Ecosystem'], values='Value', aggfunc=sum)
     sorted_columns = sorted(df.columns)
 
     return df[sorted_columns].copy()
@@ -21,7 +22,7 @@ def read_authors_file_and_pivot():
     df.columns = ['Date', 'Ecosystem', 'n', 'Value']
     df = df[['Date', 'Ecosystem', 'Value']].copy()
 
-    df = pd.pivot_table(df, index='Date', columns=['Ecosystem'], values='Value')
+    df = pd.pivot_table(df, index='Date', columns=['Ecosystem'], values='Value', aggfunc=sum)
     sorted_columns = sorted(df.columns)
 
     return df[sorted_columns].copy()
@@ -34,4 +35,4 @@ def pivot_main():
 
 
 if __name__ == '__main__':
-    print(read_authors_file_and_pivot())
+    pivot_main()
