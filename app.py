@@ -1,3 +1,5 @@
+import tomli
+
 from main import download_eco_def, generate_data, combine_data, post_process
 from initialise_ec_repo import pull_or_clone_ce, create_other_paths
 from toml_file_generator import toml_field_generator
@@ -14,7 +16,10 @@ if __name__ == '__main__':
     create_other_paths(base_path)
 
     for url in tqdm(toml_field_generator(fr"{base_path}/crypto-ecosystems/data/ecosystems")):
-        eco_file = download_eco_def(url)
+        try:
+            eco_file = download_eco_def(url)
+        except tomli.TOMLDecodeError:
+            continue
         try:
             generate_data(eco_file, limit=None)
         except KeyError:
