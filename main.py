@@ -35,17 +35,20 @@ def fetch_repo(repo_addr):
     except:
         return pd.DataFrame([])
 
-    df.columns = ['date', 'author']
-    commit_df = pd.DataFrame(df.groupby('date').size())
-    commit_df.columns = ['commits']
-    commit_df.index = pd.to_datetime(commit_df.index.values)
-    df = df.drop_duplicates()
-    df['date'] = pd.to_datetime(df['date'])
-    author_df = df.set_index('date')
-    fpath = os.path.join(f'{repo_path}', 'commits.csv')
-    auth_fpath = os.path.join(f'{repo_path}', 'authors.csv')
-    commit_df.to_csv(fpath, header=False, sep=sep)
-    author_df.to_csv(auth_fpath, header=False, sep=sep)
+    try:
+        df.columns = ['date', 'author']
+        commit_df = pd.DataFrame(df.groupby('date').size())
+        commit_df.columns = ['commits']
+        commit_df.index = pd.to_datetime(commit_df.index.values)
+        df = df.drop_duplicates()
+        df['date'] = pd.to_datetime(df['date'])
+        author_df = df.set_index('date')
+        fpath = os.path.join(f'{repo_path}', 'commits.csv')
+        auth_fpath = os.path.join(f'{repo_path}', 'authors.csv')
+        commit_df.to_csv(fpath, header=False, sep=sep)
+        author_df.to_csv(auth_fpath, header=False, sep=sep)
+    except ValueError:
+        pass
 
 
 def generate_data(fname, limit=None):
