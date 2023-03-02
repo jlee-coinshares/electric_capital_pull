@@ -16,13 +16,10 @@ if __name__ == '__main__':
     create_other_paths(base_path)
 
     for url in tqdm(toml_field_generator(fr"{base_path}/crypto-ecosystems/data/ecosystems")):
-        try:
-            eco_file = download_eco_def(url)
-        except tomli.TOMLDecodeError:
-            continue
+        eco_file = download_eco_def(url)
         try:
             generate_data(eco_file, limit=None)
-        except KeyError:
+        except (KeyError, tomli.TOMLDecodeError):
             continue
         try:
             combine_data(eco_file, 'commits')
