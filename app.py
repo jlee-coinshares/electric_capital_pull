@@ -19,7 +19,7 @@ if __name__ == '__main__':
         eco_file = download_eco_def(url)
         try:
             generate_data(eco_file, limit=None)
-        except (KeyError, tomli.TOMLDecodeError):
+        except (KeyError, tomli.TOMLDecodeError, IndexError):
             continue
         try:
             combine_data(eco_file, 'commits')
