@@ -15,7 +15,7 @@ def read_file_and_pivot_table(filename: str):
 
 
 def read_authors_file_and_pivot():
-    df = pd.read_csv("authors.csv")
+    df = pd.read_csv(f"{base_path}/authors.csv")
     df = df.groupby(by=['date', 'ecosystem']).count()
     df = df.reset_index()
     df.columns = ['Date', 'Ecosystem', 'n', 'Value']
